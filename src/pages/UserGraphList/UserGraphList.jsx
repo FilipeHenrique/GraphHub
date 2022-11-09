@@ -29,7 +29,6 @@ export default function UserGraphList() {
     const getData = () => {
         api.get(`/pesquisa/listagem/${userName}`)
             .then((response) => {
-                console.log(response.data);
                 setFilteredGraph(response.data.graphTimeLine);
                 setGraphList(response.data.graphTimeLine);
             })

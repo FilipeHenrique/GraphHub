@@ -29,7 +29,6 @@ export default function GraphvisPage() {
     const getData = () => {
         api.get(`/lista/grafos/${context.userId}`)
             .then((response) => {
-                console.log(response.data);
                 setFilteredGraph(response.data.graphTimeLine);
                 setGraphList(response.data.graphTimeLine);
             })
@@ -92,7 +91,7 @@ export default function GraphvisPage() {
                                 {graphList.map((graph, index) =>
                                     id === index + 1 ?
                                         <>
-                                            <Graphvis key={graph.id} nodes={graph.nodes} edges={graph.edges}></Graphvis>
+                                            <Graphvis key={index} nodes={graph.nodes} edges={graph.edges}></Graphvis>
                                         </>
                                         :
                                         <>

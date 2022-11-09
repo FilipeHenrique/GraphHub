@@ -1,6 +1,4 @@
 .searchbar-container {
-    display: flex;
-    flex-direction: column;
     z-index: 5;
 }
 
@@ -26,7 +24,7 @@
     background-color: white;
     width: 60rem;
     border-radius: 10px;
-    margin-top: 38px;
+    top: 63px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
  }
 
