@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useComponentVisible from '../../hooks/useComponentVisible';
@@ -7,7 +7,7 @@ import api from '../../services/api';
 import './SearchBar.css'
 
 export function SearchBar() {
-    
+
     const [search, setSearch] = useState('');
 
     const [usersList, setUserslist] = useState([]);
@@ -45,9 +45,8 @@ export function SearchBar() {
         }
     }, [debouncedSearchTerm])
 
-
     return (
-        <div className='searchbar-container' onClick={() => { setIsComponentVisible(true); }}>
+        <div className='searchbar-container'>
             <input
                 className="searchbar"
                 type="text"
@@ -57,29 +56,29 @@ export function SearchBar() {
                     setUserslist([]);
                     setSearch(event.target.value);
                 }}
+                onClick={() => { setIsComponentVisible(true); }}
             />
             {
                 (search.length > 0 & usersList.length > 0 & isComponentVisible) ?
-                    <ul className='searchbar-users-list_container' ref={ref}>
+                    <div className='searchbar-users-list_container' ref={ref}>
                         {usersList.map((user, index) => {
                             return (
-                                <Link 
-                                key={index} 
-                                className='searchbar-users-list_element' 
-                                to={`/ListaGrafos/${user.username}`} 
-                                style={{ textDecoration: 'none', color: 'unset' }}
-                                onClick={() => {
-                                    setIsComponentVisible(false);
-                                }}
+                                <Link
+                                    key={index}
+                                    to={`/ListaGrafos/${user.username}`}
+                                    className='searchbar-users-list_element'                     
+                                    style={{ textDecoration: 'none', color: 'unset' }}
+                                    onClick={() => {
+                                        setIsComponentVisible(false);
+                                    }}
                                 >
                                     <strong>{user.username}</strong>
                                     <p>{user.repositoriesNumber} grafos cadastrados</p>
                                 </Link>
-
                             );
                         })
                         }
-                    </ul>
+                    </div>
                     : <></>
             }
         </div>
