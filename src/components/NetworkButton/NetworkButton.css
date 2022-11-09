@@ -1,0 +1,78 @@
+.network-button-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.network-button-container {
+    min-height: 6rem;
+    min-width: 20rem;
+    width: 90%;
+    /* background-color: rgb(243, 242, 242); */
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 6px;
+}
+
+    .network-button-container:hover {
+        background-color: var(--hover-color);
+        cursor: pointer;
+    }
+
+
+.network-button-id {
+    display: block;
+    font-size: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.network-button-timestamp {
+    margin-top: 5px;
+    font-size: 1.3rem;
+    color: rgb(105, 105, 105);
+}
+
+
+.network-button-selected {
+    min-height: 6rem;
+    min-width: 20rem;
+    width: 90%;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 6px;
+}
+    .network-button-selected:hover {
+        background-color: rgb(120, 38, 197)
+    }
+
+    .network-button-selected *{
+        color: white ;
+    }
+
+.network-button_options {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 4px;
+}
+.crud-button {
+    background-color: rgb(221, 221, 221);
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(113, 113, 113);
+    padding: 6px 6px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    margin-right: 6px;
+}
+    .crud-button:hover {
+        cursor: pointer;
+        background-color: lightgrey;
+    }

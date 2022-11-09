@@ -1,0 +1,48 @@
+.searchbar-container {
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+.searchbar {
+    padding: 8px;
+    width: 60rem;
+    border: 1px solid #b2b0b0;
+    border-radius: 4px;
+    background-color: white;
+    color: var(--primary-black-color);
+    position: relative;
+}
+    .searchbar:focus {
+        outline: none;
+        border: 2px solid var(--primary-color);
+    }
+
+.searchbar-users-list_container {
+    position: absolute;
+    overflow:hidden;
+
+    list-style-type: none;
+    background-color: white;
+    width: 60rem;
+    border-radius: 10px;
+    margin-top: 38px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+ }
+
+ .searchbar-users-list_element {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 20px;
+    cursor: pointer;
+ }
+    .searchbar-users-list_element:hover {
+        background-color: #e2e2e2;
+    }
+    .searchbar-users-list_element:nth-child(n+1){
+        border-bottom: 1px solid lightgrey;
+    }
+    .searchbar-users-list_element:last-child{
+        border-bottom: none;
+    }

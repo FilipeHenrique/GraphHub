@@ -1,0 +1,23 @@
+.sucess-message {
+    font-size: 1.4rem;
+    margin: 2rem;
+}
+.graphUpload-visibility_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.graphUpload-visibility_container p{
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.graphUpload-radios_container{
+    display: flex;
+    align-items: center;
+}
+    .graphUpload-radios_container input{
+        margin: 5px;
+    }

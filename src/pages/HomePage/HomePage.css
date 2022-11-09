@@ -1,0 +1,29 @@
+.homepage-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: line;
+    align-items: center;
+    justify-content: center;
+}
+
+.homepage-image {
+    height: 50vh;
+}
+
+.homepage-title {
+    font-size: 7rem;
+    font-family: 'Roboto';
+    font-weight: bold;
+    line-height: 12rem;
+    color: var(--primary-black-color);
+}
+
+.homepage-description {
+    font-size: 1.5rem;
+    font-weight: lighter;
+    margin-bottom: 4rem;
+    line-height: 2.4rem;
+    max-width: 60ch;
+    color: var(--primary-black-color);
+
+}

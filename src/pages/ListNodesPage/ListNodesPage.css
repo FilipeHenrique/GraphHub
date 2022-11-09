@@ -1,0 +1,92 @@
+.listNodesPage-container {
+    padding: 30px 100px;
+}
+
+.listNodesPage-title {
+    font-size: 4rem;
+    color: var(--primary-black-color);
+}
+
+.listNodesPage-buttons_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listNodesPage-topbuttons_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.listNodesPage-switch {
+    display: flex;
+    border-radius: 100px;
+    font-size: 1.2rem;
+}
+    .listNodesPage-switch :nth-child(1){
+        border-radius: 5px 0px 0px 0px;
+    }
+    .listNodesPage-switch :nth-child(2){
+        border-radius: 0px 5px 0px 0px;
+    }
+    .listNodesPage-switch_selected {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+    }
+    .listNodesPage-switch_unselected {
+        background-color: lightgrey;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+.dialogue-title {
+    margin-bottom: 10px;
+    color: var(--primary-black-color);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    color: var(--primary-black-color);
+}
+
+.label-input {
+    padding: 5px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid var(--primary-color-light);
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.create-button {
+    outline: none;
+    border: none;
+    text-decoration: unset;
+    font-size: 1.6rem;
+    color: white;
+    border-radius: 4px 4px 0px 0px;
+    background-color: var(--primary-color);
+    padding: 1rem 2rem
+  }
+    .create-button:hover {
+      cursor: pointer;
+      background-color: var(--primary-color-dark);
+      box-shadow: 3px 4px 10px 2px rgba(30, 30, 30, 0.10);
+    }
+
+.select-container > div{
+   width: 100%;
+   height: 30px;
+}
+
+.listNodesPage-titleEdit_container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
