@@ -4,10 +4,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import { FiSettings } from "react-icons/fi"
 import { useEffect, useState } from "react";
 import api from '../../services/api'
+import useSnackContext from "../../hooks/useSnackContext";
 
 export default function EditEdgeDialogue({ edgeWeight, edgeId, getEdgesList }) {
     const [open, setOpen] = useState(false);
     const [weight,setWeight] = useState('');
+    const {setSnack} = useSnackContext();
 
     const handleClickToOpen = () => {
         setWeight(edgeWeight);
@@ -23,6 +25,7 @@ export default function EditEdgeDialogue({ edgeWeight, edgeId, getEdgesList }) {
             .then((response) => {
                 getEdgesList();
                 handleToClose();
+                setSnack((prevState)=>{return {...prevState, open: true, message: "Aresta editada com sucesso!", severity: "success"}});
             })
             .catch((error) => {
                 alert(error.response.data.detail);

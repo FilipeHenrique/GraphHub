@@ -9,7 +9,7 @@
 
 .page-buttons-container {
     max-height: 80vh;
-    overflow-y: scroll;
+    overflow: auto;
     width: 30%;
 }
 

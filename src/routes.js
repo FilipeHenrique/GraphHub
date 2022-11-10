@@ -9,11 +9,15 @@ import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { SignUpPage } from "./pages/SignUpPage/SignUpPage";
 import ListNodesPage from "./pages/ListNodesPage/ListNodesPage";
 import UserGraphList from "./pages/UserGraphList/UserGraphList";
+import useSnackContext from "./hooks/useSnackContext";
+import { SnackComponent } from "./components/SnackComponent/SnackComponent";
 
 export default function AppRoutes() {
   const context = useContext(LoginContext);
+
   return (
     <>
+      <SnackComponent/>
       <Navbar />
       <Routes>
 
@@ -24,11 +28,11 @@ export default function AppRoutes() {
             <Route path="/ListaGrafos/:userName" exact element={<UserGraphList />} />
           </>
 
-          : 
+          :
           <>
-              <Route path="/" exact element={<HomePage />} />
-              <Route path="/Login" exact element={<LoginPage />} />
-              <Route path="/Cadastro" exact element={<SignUpPage />} />
+            <Route path="/" exact element={<HomePage />} />
+            <Route path="/Login" exact element={<LoginPage />} />
+            <Route path="/Cadastro" exact element={<SignUpPage />} />
           </>
         }
         <Route path="*" element={<h1>404</h1>} />

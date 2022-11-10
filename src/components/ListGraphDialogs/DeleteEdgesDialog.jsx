@@ -4,9 +4,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 import { FiTrash } from "react-icons/fi"
 import { useState } from "react";
 import api from '../../services/api'
+import useSnackContext from "../../hooks/useSnackContext";
 
 export default function DeleteEdgesDialogue({ edgeId, getEdgesList }) {
     const [open, setOpen] = useState(false);
+    const {setSnack} = useSnackContext();
 
     const handleClickToOpen = () => {
         setOpen(true);
@@ -21,6 +23,7 @@ export default function DeleteEdgesDialogue({ edgeId, getEdgesList }) {
             .then((response) => {
                 getEdgesList();
                 handleToClose();
+                setSnack((prevState)=>{return {...prevState, open: true, message: "Aresta excluída com sucesso!", severity: "success"}});
             })
             .catch((error) => {
                 alert(error);

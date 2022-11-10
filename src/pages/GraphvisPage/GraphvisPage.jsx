@@ -21,6 +21,7 @@ export default function GraphvisPage() {
     const [id, setId] = useState(1);
 
     const context = useContext(LoginContext);
+
     // const [parent] = useAutoAnimate();
 
     const [graphList, setGraphList] = useState([]);
@@ -44,8 +45,7 @@ export default function GraphvisPage() {
     return (
         <>
             <div className='main-page'>
-
-
+                
                 <div className="graph-list-header">
                     {/* <input type="text" className='page-filter' placeholder='Buscar...' onChange={event => { filter(event.target.value) }}></input> */}
                     <h1>{context.userName}</h1>

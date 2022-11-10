@@ -14,7 +14,6 @@ export const LoginProvider = ({ children }) => {
     const [isLogged, setIsLogged] = useState(sessionStorage.getItem("isLogged"));
 
     let navigate = useNavigate();
-
    
     function Login(data) {
         api.get(`/users/${data.username}/${data.password}`)

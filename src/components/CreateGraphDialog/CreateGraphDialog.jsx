@@ -7,12 +7,14 @@ import api from '../../services/api'
 import { useContext } from "react";
 import LoginContext from "../../context/LoginContext";
 import {FiPlus} from "react-icons/fi"
+import useSnackContext from "../../hooks/useSnackContext";
 
 export default function CreateGraphDialog({ getData}) {
     const [open, setOpen] = useState(false);
     const [graphName,setGraphName] = useState('');
     const [isPublic,setIsPublic] = useState(true);
     const context = useContext(LoginContext);
+    const {setSnack} = useSnackContext();
 
     const handleClickToOpen = () => {
         setOpen(true);
@@ -34,9 +36,10 @@ export default function CreateGraphDialog({ getData}) {
         .then((response)=>{
             getData();
             handleToClose();
+            setSnack((prevState)=>{return {...prevState, open: true, message: response.data, severity: "success"}});
         })
         .catch((error)=>{
-            alert(error.response.data.detail);
+            setSnack((prevState)=>{return {...prevState, open: true, message: error.data.detail, severity: "error"}});
         })
     }
 

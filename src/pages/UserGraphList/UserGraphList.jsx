@@ -43,7 +43,6 @@ export default function UserGraphList() {
         getData();
     }, [location]);
 
-
     return (
         <>
             <div className='main-page'>

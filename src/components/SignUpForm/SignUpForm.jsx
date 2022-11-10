@@ -5,8 +5,11 @@ import { useForm } from "react-hook-form";
 import './SignUpForm.css'
 import { useNavigate } from "react-router-dom";
 import api from '../../services/api'
+import useSnackContext from '../../hooks/useSnackContext';
 
 export function SignUpForm() {
+
+    const { setSnack } = useSnackContext();
 
     const schema = yup.object({
         username: yup.string().required('Por favor forneça seu usuário'),
@@ -30,6 +33,7 @@ export function SignUpForm() {
 
         api.post(`/users/`,user)
         .then((response)=>{
+            setSnack((prevState)=>{return {...prevState, open: true, message: "Usuário criado com sucesso!", severity: "success"}});
             navigate("/Login", { replace: true });
         })
         .catch((error)=>{

@@ -9,12 +9,14 @@ import LoginContext from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
 import {FiEdit3} from "react-icons/fi"
 import "./RenameGraphDialog.css"
+import useSnackContext from "../../hooks/useSnackContext";
 
 
 export default function RenameGraphDialog({graphId,name}) {
     const [open, setOpen] = useState(false);
     const [graphName,setGraphName] = useState(name);
     let navigate = useNavigate();
+    const { setSnack } = useSnackContext();
 
     const handleClickToOpen = () => {
         setOpen(true);
@@ -34,6 +36,7 @@ export default function RenameGraphDialog({graphId,name}) {
         .then((response)=>{
             handleToClose();
             navigate(`/ListaNos/${graphId}/${graphName}`, { replace: true });
+            setSnack((prevState)=>{return {...prevState, open: true, message: "Grafo renomeado com sucesso!" ,severity: "success"}});
         })
         .catch((error)=>{
             alert(error.response.data.detail);

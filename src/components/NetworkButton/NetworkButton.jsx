@@ -3,8 +3,11 @@ import { FiSettings, FiDownloadCloud, FiLock, FiUnlock } from "react-icons/fi"
 import './NetworkButton.css'
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
+import useSnackContext from '../../hooks/useSnackContext';
 
 export default function NetworkButton({ onClick, id, setId, setStatus, editGraph, deleteGraph, label, nodes, edges, className, isPublic, updateList }) {
+
+    const { setSnack } = useSnackContext();
 
     const downloadGraphTxt = () => {
         api.get(`/download/${id}`)
@@ -15,6 +18,7 @@ export default function NetworkButton({ onClick, id, setId, setStatus, editGraph
                 alink.href = fileURL;
                 alink.download = `${label}.txt`;
                 alink.click();
+                setSnack((prevState)=>{return {...prevState, open: true, message: "Download Completo!", severity: "success"}});
             })
             .catch((error) => {
                 alert(error);
@@ -25,6 +29,7 @@ export default function NetworkButton({ onClick, id, setId, setStatus, editGraph
         api.get(`/edita/grafo/visibility/${id}`)
             .then(response => {
                 updateList();
+                setSnack((prevState)=>{return {...prevState, open: true, message: "Visibilidade alterada com sucesso!", severity: "success"}});
             })
             .catch(error => {
                 alert(error);

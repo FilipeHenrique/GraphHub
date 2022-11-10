@@ -1,0 +1,6 @@
+carol,vinicius,10
+michelle,carol,20
+vinicius,carol,5
+carol,michelle,50
+vinicius,durelli,20
+michelle,durelli,12

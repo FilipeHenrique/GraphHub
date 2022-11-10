@@ -4,10 +4,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import { FiSettings } from "react-icons/fi"
 import { useEffect, useState } from "react";
 import api from '../../services/api'
+import useSnackContext from "../../hooks/useSnackContext";
 
 export default function EditNodeDialogue({ nodeId, nodeLabel, getNodesList }) {
     const [open, setOpen] = useState(false);
     const [label,setLabel] = useState('');
+    const { setSnack } = useSnackContext();
 
     const handleClickToOpen = () => {
         setLabel(nodeLabel);
@@ -23,6 +25,7 @@ export default function EditNodeDialogue({ nodeId, nodeLabel, getNodesList }) {
             .then((response) => {
                 getNodesList();
                 handleToClose();
+                setSnack((prevState)=>{return {...prevState, open: true, message: "Nó editado com sucesso!", severity: "success"}});
             })
             .catch((error) => {
                 alert(error.response.data.detail);

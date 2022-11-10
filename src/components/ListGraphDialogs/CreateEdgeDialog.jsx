@@ -4,6 +4,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import { FiPlusCircle } from "react-icons/fi"
 import { useEffect, useState } from "react";
 import api from '../../services/api'
+import useSnackContext from "../../hooks/useSnackContext";
 
 export default function CreateEdgeDialogue({ graphId, getEdgesList }) {
     const [open, setOpen] = useState(false);
@@ -11,6 +12,7 @@ export default function CreateEdgeDialogue({ graphId, getEdgesList }) {
     const [origin, setOrigin] = useState(null);
     const [target, setTarget] = useState(null);
     const [weight, setWeight] = useState('');
+    const {setSnack} = useSnackContext();
 
     const handleClickToOpen = () => {
         setOrigin(null);
@@ -36,6 +38,7 @@ export default function CreateEdgeDialogue({ graphId, getEdgesList }) {
             .then((response) => {
                 getEdgesList();
                 handleToClose();
+                setSnack((prevState)=>{return {...prevState, open: true, message: "Aresta criada com sucesso!", severity: "success"}});
             })
             .catch((error) => {
                 alert(error.response.data.detail);

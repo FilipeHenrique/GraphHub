@@ -3,11 +3,14 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import { useState } from "react";
 import { FiPlusCircle } from "react-icons/fi"
+import useSnackContext from "../../hooks/useSnackContext";
 import api from '../../services/api'
 
 export default function CreateNodeDialogue({ graphId, getNodesList }) {
     const [open, setOpen] = useState(false);
     const [label,setLabel] = useState('');
+
+    const {setSnack} = useSnackContext();
 
     const handleClickToOpen = () => {
         setLabel('');
@@ -23,6 +26,7 @@ export default function CreateNodeDialogue({ graphId, getNodesList }) {
             .then((response) => {
                 getNodesList();
                 handleToClose();
+                setSnack((prevState)=>{return {...prevState, open: true, message: "Nó criado com sucesso!", severity: "success"}});
             })
             .catch((error) => {
                 alert(error.response.data.detail);
