@@ -4,7 +4,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import api from '../../services/api'
 
-import {FiDownload, FiLogOut} from "react-icons/fi"
+import {FiCamera, FiLogOut} from "react-icons/fi"
 import Graphvis from '../../components/Graphvis/Graphvis'
 import NetworkButton from '../../components/NetworkButton/NetworkButton';
 import UploadFileDialog from '../../components/UploadFIle/UploadFIleDialog';
@@ -106,7 +106,7 @@ export default function UserGraphList() {
                                 <span className='page-graph-id-label'>
                                     <h2 className='page-graph-id-label-text'>#{id}</h2>
                                 </span>
-                                <button className='page-graph-download-network-button' onClick={downloadImage}><FiDownload /></button>
+                                <button className='page-graph-download-network-button' onClick={downloadImage}><FiCamera /></button>
                                 {graphList.map((graph, index) =>
                                     id === index + 1 ?
                                         <div style={{backgroundColor: 'white'}} ref={ref}>
