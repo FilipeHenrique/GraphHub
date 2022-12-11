@@ -75,7 +75,6 @@ export default function GraphvisPage() {
                                     setStatus
                                     editGraph
                                     deleteGraph
-                                    // className={id === graph.id ? 'network-button-selected' : 'network-button-container'}
                                     className={id === index + 1 ? 'network-button-selected' : 'network-button-container'}
                                 />
                             )

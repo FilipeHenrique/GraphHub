@@ -71,8 +71,8 @@ export default function UserGraphList() {
                                     isPublic={graph.isPublic}
                                     setId={setId}
                                     onClick={(e) => { e.preventDefault(); setId(index + 1); }}
-                                    updateList={getData}
-                                    // className={id === graph.id ? 'network-button-selected' : 'network-button-container'}
+                                    updateList={getData}    
+                                    forkable                       
                                     className={id === index + 1 ? 'network-button-selected' : 'network-button-container'}
                                 />
                             )

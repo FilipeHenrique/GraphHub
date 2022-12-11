@@ -4,10 +4,15 @@ import './NetworkButton.css'
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import useSnackContext from '../../hooks/useSnackContext';
+import { BiGitRepoForked } from 'react-icons/bi'
+import { useContext } from 'react';
+import LoginContext from '../../context/LoginContext';
+import Tooltip from '@mui/material/Tooltip';
 
-export default function NetworkButton({ onClick, id, setId, setStatus, editGraph, deleteGraph, label, nodes, edges, className, isPublic, updateList }) {
+export default function NetworkButton({ onClick, id, setId, setStatus, editGraph, deleteGraph, label, nodes, edges, className, isPublic, updateList, forkable }) {
 
     const { setSnack } = useSnackContext();
+    const { userId } = useContext(LoginContext);
 
     const downloadGraphTxt = () => {
         api.get(`/download/${id}`)
@@ -18,7 +23,7 @@ export default function NetworkButton({ onClick, id, setId, setStatus, editGraph
                 alink.href = fileURL;
                 alink.download = `${label}.txt`;
                 alink.click();
-                setSnack((prevState)=>{return {...prevState, open: true, message: "Download Completo!", severity: "success"}});
+                setSnack((prevState) => { return { ...prevState, open: true, message: "Download Completo!", severity: "success" } });
             })
             .catch((error) => {
                 alert(error);
@@ -29,7 +34,17 @@ export default function NetworkButton({ onClick, id, setId, setStatus, editGraph
         api.get(`/edita/grafo/visibility/${id}`)
             .then(response => {
                 updateList();
-                setSnack((prevState)=>{return {...prevState, open: true, message: "Visibilidade alterada com sucesso!", severity: "success"}});
+                setSnack((prevState) => { return { ...prevState, open: true, message: "Visibilidade alterada com sucesso!", severity: "success" } });
+            })
+            .catch(error => {
+                alert(error);
+            })
+    }
+
+    const forkGraph = () => {
+        api.get(`/fork/${id}/${userId}`)
+            .then(response => {
+                setSnack((prevState) => { return { ...prevState, open: true, message: "Fork realizado com sucesso!", severity: "success" } });
             })
             .catch(error => {
                 alert(error);
@@ -47,20 +62,36 @@ export default function NetworkButton({ onClick, id, setId, setStatus, editGraph
 
             <div className='network-button_options'>
                 {editGraph &&
-                    <div className='crud-button'>
-                        <Link to={`/ListaNos/${id}/${label}`} style={{ textDecoration: 'none', color: 'unset' }}>
-                            <FiSettings></FiSettings>
-                        </Link>
-                    </div>
+                    <Tooltip title={<p style={{ fontSize: '12px', padding: '3px' }}>Editar Grafo</p>}>
+                        <div className='crud-button'>
+                            <Link to={`/ListaNos/${id}/${label}`} style={{ textDecoration: 'none', color: 'unset' }}>
+                                <FiSettings></FiSettings>
+                            </Link>
+                        </div>
+                    </Tooltip>
                 }
                 {setStatus &&
-                    <button className='crud-button' onClick={() => { changePublicStatus() }}>
-                        {isPublic == true ? <FiUnlock /> : <FiLock />}
-                    </button>
+                    <Tooltip title={<p style={{ fontSize: '12px', padding: '3px' }}>Alterar Privacidade</p>}>
+                        <button className='crud-button' onClick={() => { changePublicStatus() }}>
+                            {isPublic == true ? <FiUnlock /> : <FiLock />}
+                        </button>
+                    </Tooltip>
+
                 }
-                <button className='crud-button' onClick={() => { downloadGraphTxt() }}><FiDownloadCloud /></button>
+                <Tooltip title={<p style={{ fontSize: '12px', padding: '3px' }}>Baixar .txt</p>}>
+                    <button className='crud-button' onClick={() => { downloadGraphTxt() }}><FiDownloadCloud /></button>
+                </Tooltip>
+
                 {deleteGraph &&
-                    <DeleteGraphDialog graphId={id} updateList={updateList} setId={setId}></DeleteGraphDialog>
+                        <DeleteGraphDialog graphId={id} updateList={updateList} setId={setId}></DeleteGraphDialog>
+                }
+                {
+                    forkable &&
+                    <Tooltip title={<p style={{ fontSize: '12px', padding: '3px' }}>Forkar Grafo</p>}>
+                        <button className='crud-button' onClick={() => { forkGraph(); }}>
+                            <BiGitRepoForked></BiGitRepoForked>
+                        </button>
+                    </Tooltip>
                 }
             </div>
 
